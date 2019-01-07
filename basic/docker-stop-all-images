@@ -6,13 +6,21 @@ usage() {
    echo "usage: docker=stop-all-images [-s][-r][-l]" 1>&2;
    exit 1;
 }
+# In case of error message get 
+# http:///var/run/docker.sock/v1.14/containers/json?all=1: dial unix /var/run/docker.sock: permission denied
 
 (docker ps -a -q) > docker running
 
 while getopts ":s:r:h" option; do
    case "${option}" in
       s) docker stop $(docker ps -a -q);;
-      r) docker rm $(docker ps -a -q);;
+      r) docker rm -f $(docker ps -a -q);;
+# remove all that are currently not running:
+# docker rm $(docker ps -a -q -f "status=exited*")
+# remove all with status "exit"
+#docker ps --filter 'status=Exited' -a | xargs docker stop docker images --filter "dangling=true" -q | xargs docker rmi 
+# remove volumes, too
+# docker rm -f -v $(docker ps -a -q);;
       h) usage ;;
    esac
 done
