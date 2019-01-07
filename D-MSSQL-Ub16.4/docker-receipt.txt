@@ -1,5 +1,6 @@
 # Source: https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-2017
 #    https://hub.docker.com/r/microsoft/mssql-server
+#    https://tomssl.com/2018/01/15/running-microsoft-sql-server-on-a-linux-container-in-docker/
 #
 # Prerequisites
 # Docker Engine 1.8+ on any supported Linux distribution or Docker for Mac/Windows. 
