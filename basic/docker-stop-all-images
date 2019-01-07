@@ -1,1 +1,23 @@
+# echo "usage: dockerstop-all-images [-s][-r][-l]"
+# last modified 20190105
+# ManuMuc
+
+
+usage() {
+   echo "usage: dockerstop-all-images [-s][-r][-l]" 1>&2;
+   exit 1;
+}
+
+(docker ps -a -q) > docker running
+
+while getopts ":s:r:h" option; do
+   case "${option}" in
+      s) docker stop $(docker ps -a -q);;
+      r) docker rm $(docker ps -a -q);;
+      h) usage ;;
+   esac
+done
+shift "$((OPTIND-1))"
+
+
 
