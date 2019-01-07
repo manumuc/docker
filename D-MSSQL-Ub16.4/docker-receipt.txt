@@ -1,4 +1,11 @@
 # Source: https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-2017
+#
+# Prerequisites
+# Docker Engine 1.8+ on any supported Linux distribution or Docker for Mac/Windows. 
+# Docker overlay2 storage driver. This is the default for most users. If you find that you are not using this storage provider and need to change, please see the instructions and warnings in the docker documentation for configuring overlay2.
+# Minimum of 2 GB of disk space.
+# Minimum of 2 GB of RAM.
+# System requirements for SQL Server on Linux.
 
 
 bash: 
