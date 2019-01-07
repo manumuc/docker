@@ -7,12 +7,11 @@ usage() {
    exit 1;
 }
 
-
 dockerhub=""
 newproj=""
 os=""
 basedir="/tmp/docker"
-#wgetopts="--user=jim --password=xxx-yyy-zzzi --no-check-certificate --content-disposition"
+#wgetopts="--user=set-user --password=set-pwd --no-check-certificate --content-disposition"
 wgetopts"=--no-check-certificate --content-disposition"
 gitdldockerfiletemp="https://raw.githubusercontent.com/manumuc/docker/master/dockerfile.template"
 
@@ -25,9 +24,6 @@ while getopts "d:p:h" option; do
    esac
 done
 shift "$((OPTIND-1))"
-
-echo "${dockerhub}"
-echo "${newproj}"
 
 # exit script if variable is empty or not for lx or win configured
 if [ -z "${basedir}" ]; then
