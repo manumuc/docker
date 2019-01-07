@@ -4,7 +4,8 @@ dockerhub=""
 newproj=""
 os=""
 basedir="/tmp/docker"
-gitdldockerfiletemp="https://raw.githubusercontent.com/manumuc/tmmr01/docker/Dockerfile.template" 
+gitdldockerfiletemp="https://raw.githubusercontent.com/manumuc/docker/master/dockerfile.template" 
+                     
 
 # if : follows flag than i needs a value like "-d testproj"
 while getops hd:p:o: option 
@@ -31,6 +32,8 @@ fi
 mkdir -p $basedir/$dockerhub/newproj && cd newproject
 
 # Download the template Dockerfile to the folder
-#    wget --no-check-certificate --content-disposition https://URL-from-step3/
-#    curl -LJO https://URL-from-step3/
+#    wget --no-check-certificate --content-disposition $gitdldockerfiletemp
+#    curl -LJO  $gitdldockerfiletemp   -u USER:PASSWORD
+#    curl -LJO $gitdldockerfiletemp -u manumuc:<pwd2enter>
+
  
