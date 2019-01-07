@@ -1,10 +1,9 @@
-# echo "usage: dockerstop-all-images [-s][-r][-l]"
+# echo "usage: docker-stop-all-images [-s][-r][-l]"
 # last modified 20190105
 # ManuMuc
 
-
 usage() {
-   echo "usage: dockerstop-all-images [-s][-r][-l]" 1>&2;
+   echo "usage: docker=stop-all-images [-s][-r][-l]" 1>&2;
    exit 1;
 }
 
