@@ -1,25 +1,33 @@
-# echo "usage: create-docker=proj.sh  [-d <dockerhub>] [-p <proj-name>]"
+ echo "usage: create-docker-proj.sh  [-d <dockerhub>] [-p <proj-name>]"
 # last modified 20190105
 # ManuMuc
 
-usage() { echo "Usage: $0 [-d <dockerhub>] [-p <proj-name>]" 1>&2; exit 1; }
+usage() {
+   echo "Usage: create-docker-proj.sh  [-d <dockerhub>] [-p <proj-name>]" 1>&2;
+   exit 1;
+}
 
 
 dockerhub=""
 newproj=""
 os=""
 basedir="/tmp/docker"
+#wgetopts="--user=jim --password=xxx-yyy-zzzi --no-check-certificate --content-disposition"
+wgetopts"=--no-check-certificate --content-disposition"
 gitdldockerfiletemp="https://raw.githubusercontent.com/manumuc/docker/master/dockerfile.template"
 
 # if : follows flag than i needs a value like -d testproj
-while getopts "hd:p:" option; do
+while getopts "d:p:h" option; do
    case "${option}" in
-      d) dockerhub=${optarg};;
-      p) newproj=$[optarg];;
+      d) dockerhub="$OPTARG";;
+      p) newproj="$OPTARG";;
       h) usage ;;
    esac
 done
-shift $((OPTIND-1))
+shift "$((OPTIND-1))"
+
+echo "${dockerhub}"
+echo "${newproj}"
 
 # exit script if variable is empty or not for lx or win configured
 if [ -z "${basedir}" ]; then
@@ -27,7 +35,7 @@ if [ -z "${basedir}" ]; then
    usage
 fi
 
-if [-z "${d}"] || [-z "${d}"]; then
+if [ -z "${dockerhub}"] && [ -z "${newproj}"]; then
    # set variable manually
    dockerhub="enter-docker-hub-proj"
    newproj="enter-project-name"
@@ -37,7 +45,6 @@ fi
 mkdir -p ${basedir}/${dockerhub}/${newproj} && cd ${newproject}
 
 # Download the template Dockerfile to the folder
-    wget --no-check-certificate --content-disposition ${gitdldockerfiletemp}
+    wget ${wgetopts} ${gitdldockerfiletemp} -P ${basedir}/${dockerhub}/${newproj}
 #    curl -LJO  $gitdldockerfiletemp   -u USER:PASSWORD
 #    curl -LJO $gitdldockerfiletemp -u manumuc:<pwd2enter>
-                                                                              
